@@ -29,6 +29,12 @@ const App = props => {
           <span />
         )}
       </div>
+      <div>
+        <button onClick={props.postApi}>API POST</button>
+        <span>
+          {props.submittedData !== null ? props.submittedData.title : null}
+        </span>
+      </div>
     </>
   );
 };
@@ -36,7 +42,8 @@ const App = props => {
 const mapStateToProps = state => {
   return {
     ctr: state.count,
-    apidata: state.information
+    apidata: state.information,
+    submittedData: state.postedData
   };
 };
 
@@ -46,7 +53,8 @@ const mapDispatchToProps = dispatch => {
     decrement: () => dispatch(actionCreator.decrement()),
     incrementByFive: () => dispatch(actionCreator.incrementByFive(5)),
     decrementByFive: () => dispatch(actionCreator.decrementByFive(5)),
-    callApi: () => dispatch(actionCreator.callApi())
+    callApi: () => dispatch(actionCreator.callApi()),
+    postApi: () => dispatch(actionCreator.postApi())
   };
 };
 

@@ -39,6 +39,7 @@ export const decrementByFive = val => {
   };
 };
 
+// GET API call
 export const saveApi = data => {
   return {
     type: actionTypes.CALL_API,
@@ -56,5 +57,29 @@ export const callApi = () => {
   };
 };
 
+// POST API Call
+export const postData = responsedata => {
+  console.log(responsedata);
+  return {
+    type: actionTypes.POST_API,
+    postRes: responsedata
+  };
+};
+
+export const postApi = () => {
+  return dispatch => {
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: "POST",
+      body: JSON.stringify({
+        title: "Elon Musk",
+        body: "Body Content"
+      })
+    })
+      .then(response => response.json())
+      .then(responsedata => dispatch(postData(responsedata)));
+  };
+};
+
 // Whenever data sending use JSON.stringify
-// Whenever daata is receiving use JSON.parse or .json
+// Whenever data is receiving use JSON.parse or .json

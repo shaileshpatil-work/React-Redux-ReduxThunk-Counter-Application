@@ -2,7 +2,8 @@ import * as actionTypes from "./actions/actionTypes"; //Imported all constants a
 
 let initialState = {
   count: 0,
-  information: "no data"
+  information: "no data",
+  postedData: null
 };
 
 const counter = (state = initialState, action) => {
@@ -31,6 +32,11 @@ const counter = (state = initialState, action) => {
       return {
         ...state,
         information: action.info
+      };
+    case actionTypes.POST_API:
+      return {
+        ...state,
+        postedData: action.postRes
       };
     default:
       return state;
